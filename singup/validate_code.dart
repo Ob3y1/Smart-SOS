@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/login/login.dart';
+import 'package:flutter_application_1/UserApp/login1.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
@@ -32,9 +33,10 @@ class ValidateCode extends StatelessWidget {
               margin: const EdgeInsets.only(top: 100),
               decoration: const BoxDecoration(
                 image: DecorationImage(
+                    opacity: 0.1,
                     image: AssetImage(
-                  "images/ALSHA.png",
-                )),
+                      "images/ALSHA.png",
+                    )),
               ),
             ),
             Padding(
@@ -54,7 +56,7 @@ class ValidateCode extends StatelessWidget {
                     onChanged: (value) {
                       code = value;
                     },
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     otpFieldStyle: OtpFieldStyle(
                       borderColor: Colors.black,
                     ),
@@ -64,7 +66,7 @@ class ValidateCode extends StatelessWidget {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      if (code == "123456") {
+                      if (code == "111111") {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
