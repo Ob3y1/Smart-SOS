@@ -5,7 +5,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 // ignore: camel_case_types, must_be_immutable
 class Validate extends StatefulWidget {
-  Validate({super.key});
+  const Validate({super.key});
 
   @override
   State<Validate> createState() => _ValidateState();
@@ -14,19 +14,20 @@ class Validate extends StatefulWidget {
 class _ValidateState extends State<Validate> {
   var countriess = countries;
   var filteredCountries = ["SY"];
-  TextEditingController controllerPhone = TextEditingController();
+  TextEditingController controllerPhone = TextEditingController(text: "09");
   List<Country> filter = [];
   final GlobalKey<FormState> _formKey = GlobalKey();
+
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    countriess.forEach((element) {
-      filteredCountries.forEach((filteredc) {
+    for (var element in countriess) {
+      for (var filteredc in filteredCountries) {
         if (filteredc == element.code) {
           filter.add(element);
         }
-      });
-    });
+      }
+    }
   }
 
   @override
@@ -53,9 +54,10 @@ class _ValidateState extends State<Validate> {
             height: 400,
             decoration: const BoxDecoration(
               image: DecorationImage(
+                  opacity: 0.1,
                   image: AssetImage(
-                "images/ALSHA.png",
-              )),
+                    "images/ALSHA.png",
+                  )),
             ),
           ),
           Column(
@@ -63,14 +65,6 @@ class _ValidateState extends State<Validate> {
               const SizedBox(
                 height: 400,
               ),
-              // const Text(
-              //   "Mobile Number:",
-              //   style: TextStyle(
-              //     fontSize: 25,
-              //     fontWeight: FontWeight.bold,
-              //     fontStyle: FontStyle.italic,
-              //   ),
-              // ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
@@ -80,7 +74,13 @@ class _ValidateState extends State<Validate> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IntlPhoneField(
+                        autofocus: true,
                         controller: controllerPhone,
+                        onTap: null,
+                        onChanged: null,
+                        onSaved: null,
+                        onCountryChanged: null,
+                        onSubmitted: null,
                         keyboardType: TextInputType.number,
                         dropdownTextStyle: const TextStyle(fontSize: 18),
                         style: const TextStyle(fontSize: 18),
@@ -102,14 +102,15 @@ class _ValidateState extends State<Validate> {
                       const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
-                          if (controllerPhone.text.isEmpty) {
+                          if (controllerPhone.text != "09" &&
+                              controllerPhone.text.isNotEmpty) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ValidateCode()));
+                          } else {
                             var snackBar = const SnackBar(
                                 content: Text('يرجى ادخال الرقم بشكل صحيح'));
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
-                          } else {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const ValidateCode()));
                           }
                         },
                         child: Container(

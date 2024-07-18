@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
 
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
@@ -32,9 +33,10 @@ class LoginScreen extends StatelessWidget {
               margin: const EdgeInsets.only(top: 50),
               decoration: const BoxDecoration(
                 image: DecorationImage(
+                    opacity: 0.1,
                     image: AssetImage(
-                  "images/ALSHA.png",
-                )),
+                      "images/ALSHA.png",
+                    )),
               ),
             ),
             Padding(
@@ -46,28 +48,47 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const Text("Please Login To Continue With Your Account:",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
-                        wordSpacing: 4,
+                        wordSpacing: 1,
                       )),
                   const SizedBox(
                     height: 50,
                   ),
                   component1(
-                      Icons.email, 'Email...', false, false, emailController),
+                    Icons.phone,
+                    'Number Phone...',
+                    false,
+                    phoneController,
+                    TextInputType.number,
+                    [
+                      FilteringTextInputFormatter.allow(
+                        RegExp("[0-9]"),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  component1(Icons.lock_outline, 'Password...', true, false,
-                      passwordController),
+                  component1(Icons.lock_outline, 'Password...', true,
+                      passwordController, TextInputType.text, []),
                   const SizedBox(
                     height: 50,
                   ),
                   component2(
                     'Login',
                     2,
-                    () {},
+                    () {
+                      if (phoneController.text.isEmpty &&
+                          passwordController.text.isEmpty) {
+                        var snackBar =
+                            const SnackBar(content: Text('يرجى ملئ الحقول'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        print("تم التسجيل بنجاح");
+                      }
+                    },
                   ),
                 ],
               ),
@@ -78,8 +99,13 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget component1(IconData icon, String hintText, bool isPassword,
-      bool isEmail, TextEditingController? controller) {
+  Widget component1(
+      IconData icon,
+      String hintText,
+      bool isPassword,
+      TextEditingController? controller,
+      TextInputType keyboardType,
+      List<TextInputFormatter> inputFormatters) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
@@ -88,15 +114,15 @@ class LoginScreen extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.3),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: TextField(
+        child: TextFormField(
           controller: controller,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
           style: TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0).withOpacity(.8),
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.8),
               fontWeight: FontWeight.bold),
           cursorColor: const Color.fromARGB(255, 0, 0, 0),
           obscureText: isPassword,
-          keyboardType:
-              isEmail ? TextInputType.emailAddress : TextInputType.text,
           decoration: InputDecoration(
             prefixIcon: Icon(
               icon,
