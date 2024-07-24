@@ -1,30 +1,16 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_application_1/UserApp/home.dart';
-import 'package:flutter_application_1/signup/Sign_Up.dart';
 
 // ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class Login1Screen extends StatelessWidget {
+  const Login1Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController phoneController = TextEditingController();
+    TextEditingController carController = TextEditingController();
 
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon: const Icon(
-        //     Icons.arrow_back,
-        //     color: Colors.white,
-        //   ),
-        //   onPressed: () {
-        //     exit(1);
-        //   },
-        // ),
         backgroundColor: Colors.black,
         title: const Text(
           "Login",
@@ -43,7 +29,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 400,
-              margin: const EdgeInsets.only(top: 0),
+              margin: const EdgeInsets.only(top: 50),
               decoration: const BoxDecoration(
                 image: DecorationImage(
                     opacity: 0.1,
@@ -57,35 +43,25 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 350,
+                    height: 400,
                   ),
                   const Text("Please Login To Continue With Your Account:",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
-                        wordSpacing: 1,
+                        wordSpacing: 4,
                       )),
                   const SizedBox(
                     height: 50,
                   ),
-                  component1(
-                    Icons.phone,
-                    'Number Phone...',
-                    false,
-                    phoneController,
-                    TextInputType.number,
-                    [
-                      FilteringTextInputFormatter.allow(
-                        RegExp("[0-9]"),
-                      ),
-                    ],
-                  ),
+                  component1(Icons.car_crash, 'Number Your Car...', false,
+                      carController),
                   const SizedBox(
                     height: 20,
                   ),
                   component1(Icons.lock_outline, 'Password...', true,
-                      passwordController, TextInputType.text, []),
+                      passwordController),
                   const SizedBox(
                     height: 50,
                   ),
@@ -93,45 +69,23 @@ class LoginScreen extends StatelessWidget {
                     'Login',
                     2,
                     () {
-                      if (phoneController.text.isEmpty ||
+                       if (carController.text.isEmpty ||
                           passwordController.text.isEmpty) {
                         var snackBar =
                             const SnackBar(content: Text('يرجى ملئ الحقول'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else {
-                        if (passwordController.text.length < 8 ||
-                            phoneController.text.length < 10) {
+                        if (passwordController.text.length < 8) {
                           var snackBar = const SnackBar(
                               content: Text(
-                                  'يرجى كتابة كلمة السر بطول ال 8 على الاقل والرقم من 10 ارقام '));
+                                  'يرجى كتابة كلمة السر بطول ال 8 على الاقل '));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         } else {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const home(),
-                            ),
-                            (route) => false,
-                          );
+                          print("sucss");
                         }
                       }
                     },
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                        (route) => false,
-                      );
-                    },
-                    child: const Text("Sign Up"),
-                  )
                 ],
               ),
             ),
@@ -141,13 +95,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget component1(
-      IconData icon,
-      String hintText,
-      bool isPassword,
-      TextEditingController? controller,
-      TextInputType keyboardType,
-      List<TextInputFormatter> inputFormatters) {
+  Widget component1(IconData icon, String hintText, bool isPassword,
+      TextEditingController? controller) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
@@ -156,10 +105,8 @@ class LoginScreen extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.3),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: TextFormField(
+        child: TextField(
           controller: controller,
-          keyboardType: keyboardType,
-          inputFormatters: inputFormatters,
           style: TextStyle(
               color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.8),
               fontWeight: FontWeight.bold),

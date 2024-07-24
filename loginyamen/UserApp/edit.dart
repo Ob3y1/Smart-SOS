@@ -1,33 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/signup/Validating.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageedit extends StatefulWidget {
+  const HomePageedit({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePageedit> with TickerProviderStateMixin {
   DateTime date = DateTime.now();
   String? country = "";
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordconfigController = TextEditingController();
+  // ignore: non_constant_identifier_names
+  TextEditingController PhoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          color: Colors.white,
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: Colors.black,
         title: const Text(
-          "Sign Up",
+          "Edit Your Information:",
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
-              wordSpacing: 4,
+              wordSpacing: 1,
               color: Colors.white),
         ),
         centerTitle: true,
@@ -51,17 +59,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 height: 100,
               ),
               component1(Icons.account_circle_outlined, 'User Name...', false,
-                  userNameController),
+                  userNameController, TextInputType.text),
               const SizedBox(
                 height: 30,
               ),
-              component1(
-                  Icons.lock_outline, 'Password...', true, passwordController),
+              component1(Icons.account_circle_outlined, 'Phone Number...',
+                  false, PhoneNumberController, TextInputType.number),
+              const SizedBox(
+                height: 30,
+              ),
+              component1(Icons.lock_outline, 'Password...', true,
+                  passwordController, TextInputType.text),
               const SizedBox(
                 height: 30,
               ),
               component1(Icons.lock_outline, 'Re-enter Password...', true,
-                  passwordconfigController),
+                  passwordconfigController, TextInputType.text),
               const SizedBox(
                 height: 30,
               ),
@@ -113,7 +126,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 height: 70,
               ),
               component2(
-                'Continue',
+                'Edit',
                 2,
                 () {
                   if (userNameController.text.isNotEmpty &&
@@ -131,7 +144,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Validate(),
+                            builder: (context) => Validate(),
                           ),
                         );
                       }
@@ -154,8 +167,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget component1(IconData icon, String hintText, bool isSecurePassword,
-      TextEditingController? controller) {
+  Widget component1(
+    IconData icon,
+    String hintText,
+    bool isSecurePassword,
+    TextEditingController? controller,
+    TextInputType keyboardType,
+  ) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
@@ -165,6 +183,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(15),
         ),
         child: TextFormField(
+          keyboardType: keyboardType,
           controller: controller,
           style: TextStyle(
               color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.8),

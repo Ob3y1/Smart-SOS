@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/onbording/content_model.dart';
-import 'package:flutter_application_1/singup/Sign_Up.dart';
+import 'package:flutter_application_1/signup/Sign_Up.dart';
 
 class Onbording extends StatefulWidget {
   const Onbording({super.key});

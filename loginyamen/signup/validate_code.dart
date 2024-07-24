@@ -12,6 +12,7 @@ class ValidateCode extends StatelessWidget {
     String code = "";
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: Colors.black,
           title: const Text(
             "Sign Up",
@@ -43,7 +44,18 @@ class ValidateCode extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 230,
+                    height: 200,
+                  ),
+                  const Text(
+                    ":سوف يتم ارسال كود عبر رقم الهاتف ادخله هنا",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
                   ),
                   OTPTextField(
                     contentPadding: const EdgeInsets.all(10),
@@ -61,7 +73,7 @@ class ValidateCode extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 200,
+                    height: 100,
                   ),
                   MaterialButton(
                     onPressed: () {
