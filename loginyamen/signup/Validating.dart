@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/singup/validate_code.dart';
+import 'package:flutter_application_1/signup/validate_code.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -35,6 +35,7 @@ class _ValidateState extends State<Validate> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           "Sign Up",
           style: TextStyle(
@@ -64,6 +65,14 @@ class _ValidateState extends State<Validate> {
             children: [
               const SizedBox(
                 height: 400,
+              ),
+              const Text(
+                ":يرجى ادخال رقم هاتفك ",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
+                ),
               ),
               Padding(
                 padding:
