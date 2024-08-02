@@ -1,27 +1,22 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="auto" >
 
 <head>
-  <script src="../js/color-modes.js"></script>
+  <script src="js/color-modes.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.111.3">
-  <title>Groups</title>
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <title>Add Groups</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -97,7 +92,7 @@
       z-index: 1500;
     }
 
-
+   
     .link-body-emphasis {
       color: RGBA(var(--bs-emphasis-color-rgb), var(--bs-link-opacity, 1)) !important;
       -webkit-text-decoration-color: RGBA(var(--bs-emphasis-color-rgb), var(--bs-link-underline-opacity, 1)) !important;
@@ -107,25 +102,18 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="../css/sidebars.css" rel="stylesheet">
+  <link href="css/sidebars.css" rel="stylesheet">
 
-  <link href="../css/mystyle.css" rel="stylesheet">
+  <script src="js/sidebars.js"></script>
+
+
+  <link href="css/mystyle.css" rel="stylesheet">
 
 </head>
 <script>
-  var queryString = window.location.search;
-  var urlParams = new URLSearchParams(queryString);
-  var job1 = urlParams.get('job');    
-  localStorage.setItem('job', JSON.stringify(job1));
-  var users = JSON.parse(localStorage.getItem('users'));
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].job != job1) {
-      users.splice(i, 1);
-      i--;
-    }
-  }
-</script> 
-
+localStorage.removeItem('job'); 
+ localStorage.removeItem('selectedValue'); 
+</script>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check2" viewBox="0 0 16 16">
@@ -229,7 +217,7 @@
   </svg>
 
   <main class="d-flex flex-nowrap">
-    <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
+  <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
       <div class="d-flex align-items-center mb-0 me-md-auto link-body-emphasis text-decoration-none">
         <img src="../images/ALSHAMLOGO10-11-.png" class="doera" width="45px" onclick="toggleSidebar1()">
         <span class="fs-4 sidebar-text ms-2">Smart SOS</span>
@@ -240,7 +228,7 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link link-body-emphasis" aria-current="page">
+          <a href="{{route('homeadmin')}}" class="nav-link link-body-emphasis" aria-current="page">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#home" />
             </svg>
@@ -249,42 +237,33 @@
         </li>
         <hr style="margin: 5px 15px 5px 5px ; ">
         <li class="nav-item">
-          <a href="#" class="nav-link link-body-emphasis">
+          <a href="{{route('false')}}" class=" active nav-link link-body-emphasis">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#speedometer2" />
             </svg>
-            <span class="sidebar-text"> Dashboard</span>
+            <span class="sidebar-text"> False notifications</span>
           </a>
         </li>
         <hr style="margin: 5px 15px 5px 5px ; ">
         <li class="nav-item">
-          <a href="#" class="nav-link link-body-emphasis">
+          <a href="{{ route('requests') }}" class="nav-link link-body-emphasis">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#table" />
             </svg>
-            <span class="sidebar-text"> Orders</span>
+            <span class="sidebar-text">Emergency Requests</span>
           </a>
 
         </li>
         <hr style="margin: 5px 15px 5px 5px ; ">
         <li class="nav-item">
-          <a href="ShowGroups.html" class="active nav-link link-body-emphasis">
+          <a href="{{url('ShowGroups')}}" class=" nav-link link-body-emphasis">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#grid" />
             </svg>
             <span class="sidebar-text"> Groups</span>
           </a>
         </li>
-        <hr style="margin: 5px 15px 5px 5px ; ">
-
-        <li class="nav-item">
-          <a href="#" class=" nav-link link-body-emphasis ">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#people-circle" />
-            </svg>
-            <span class="sidebar-text"> Customers</span>
-          </a>
-        </li>
+        
         <hr style="margin: 5px 15px 5px 5px ; ">
       </ul>
       <hr>
@@ -292,170 +271,59 @@
         <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="../images/ALSHAMLOGO8-4 (2).png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <span class="sidebar-text"> <strong>Obay</strong></span>
+          <span class="sidebar-text"> <strong>{{ Auth::user()->name }}
+        </strong></span>
         </a>
         <ul class="dropdown-menu text-small shadow">
-          <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+          <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="login.html">Sign out</a></li>
+          <li> <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Sign Out
+                      </button></li>
         </ul>
       </div>
-    </div>
+    
+  </div>
     <div class="b-example-divider b-example-vr"></div>
-    <section class=" w-100 overflow-y-auto overflow-x-hidden" data-bs-smooth-scroll="true">
+
+
+    <section class=" w-100 overflow-y-auto" data-bs-smooth-scroll="true">
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid  justify-content-md-between">
-          <a class="navbar-brand fw-normal fs-4 mb-1 mb-md-0">Groups</a>
-
-          <select class=" my-2 form-control" id="selectOption" style="width: 40%;" aria-label="Default select example"
-            aria-hidden="false">
-            <option></option>
-            <option value="المدينة القديمة">المدينة القديمة</option>
-            <option value="برزة">برزة</option>
-            <option value="دمر">دمر</option>
-            <option value="جوبر">جوبر</option>
-            <option value="قنوات">قنوات</option>
-            <option value="كفرسوسة">كفرسوسة</option>
-            <option value="مزة">مزة</option>
-            <option value="ميدان">ميدان</option>
-            <option value="مهاجرين">مهاجرين</option>
-            <option value="قابون">قابون</option>
-            <option value="قدم">قدم</option>
-            <option value="ركن الدين">ركن الدين</option>
-            <option value="صالحية">صالحية</option>
-            <option value="ساروجة">ساروجة</option>
-            <option value="شاغور">شاغور</option>
-            <option value="يرموك">يرموك</option>
-          </select>
-
+          <a class="navbar-brand fw-normal fs-4 mb-1 mb-md-0 d-none d-sm-block ">Add Groups</a>
+          <div class="d-flex"><a href="ShowGroups" class=" me-2 btn btn-outline-primary" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" data-bs-title="pre page"><i class="bi bi-arrow-90deg-left"></i></a>
+          </div>
         </div>
       </nav>
-
-      <table style="width: 98%;" class=" text-center table table-striped table-bordered mx-auto my-3 w-md-90">
-        <thead>
-          <tr>
-            <th scope="col" >ID</th>
-            <th scope="col">Car Number</th>
-            <th scope="col">Job</th>
-            <th scope="col">City</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody id="userTable">
-
-        </tbody>
-      </table>
+      
+    
+    </section>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" >
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">تأكيد المغادرة</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" dir="rtl">
+                    هل أنت متأكد من أنك تريد المغادرة؟
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ route('logout') }}" method="get">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                  <button type="submit" class="btn btn-danger" id="sign-out-button">مغادرة</button>
+                </form>
+                </div>
+              </div>
+            </div>
 
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
-  <script>
-var storedValue = localStorage.getItem('selectedValue');
 
-// تحديد قيمة حقل البحث
-var searchBox = document.getElementById('selectOption');
-searchBox.value = storedValue;
-users.forEach(user => {
-        if (user.city === storedValue) {
-          const row = `<tr>
-            <th scope="row">${user.id}</th>
-            <td>${user.car_number}</td>
-            <td>${user.job}</td>
-            <td>${user.city}</td>
-            <td>
-              <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-title="View details" href="showdetails.html?id=${user.id}"><i class="bi bi-eye"></i></a>
-              <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-title="Edit User" href="edit.html?id=${user.id}"><i class="bi bi-pencil"></i></a>
-              
-                 <button type="button" class="btn btn-danger btn-sm mb-2 " data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"><i class="bi bi-trash"></i></button>
-                           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" dir="ltr">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Group </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this group
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger" onclick="Delete(id1)">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td></tr>
-           `;
-          $('#userTable').append(row);
-        }
-      });
-    $('#selectOption').select2({
-      theme: "bootstrap-5",
-      width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-      placeholder: "اختر مكان الزمرة التي تبحث عنها...",
-      allowClear: true
-    });
+  <script src="js/myjs.js"></script>
 
-    const selectOption = document.getElementById('selectOption');
-    const userTable = document.getElementById('userTable');
-
-    // قائمة المستخدمين (يمكن استبدالها ببيانات حقيقية من قاعدة البيانات)
-    // const users = [
-    //     { id: '1', car_number: '123456', job:'police', city:'دمر', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '2', car_number: '125676', job:'police', city:'دمر', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '3', car_number: '453455', job:'police', city:'برزة', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '4', car_number: '423243', job:'police', city:'برزة', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '5', car_number: '453423', job:'police', city:'مهاجرين', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '6', car_number: '456756', job:'police', city:'مهاجرين', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '7', car_number: '312453', job:'police', city:'مهاجرين', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '8', car_number: '786543', job:'police', city:'دمر', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' },
-    //     { id: '9', car_number: '354345', job:'police', city:'دمر', pas:'asdasd', created:'16/5/1666', updated:'15/51/51616' }
-    // ];
-
-    // تحديث جدول المستخدمين بناءً على القيمة المحددة
-
-    localStorage.setItem('users', JSON.stringify(users));
-// الحصول على القيمة المخزنة في localStorage
-
-
-    $('#selectOption').on('change', function () {
-      const selectedValue = $(this).val();
-      $('#userTable').empty(); // مسح الجدول الحالي
-      localStorage.setItem('selectedValue', selectedValue);
-      users.forEach(user => {
-        if (user.city === selectedValue) {
-          const row = `<tr>
-            <th scope="row">${user.id}</th>
-            <td>${user.car_number}</td>
-            <td>${user.job}</td>
-            <td>${user.city}</td>
-            <td>
-              <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-title="View details" href="showdetails.html?id=${user.id}"><i class="bi bi-eye"></i></a>
-              <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-title="Edit User" href="edit.html?id=${user.id}"><i class="bi bi-pencil"></i></a>
-              <a class="btn btn-danger btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                data-bs-title="Delete User" href=""><i class="bi bi-trash"></i></a>
-            </td></tr>`;
-          $('#userTable').append(row);
-        }
-      });
-    });
-
-  </script>
-
-  <script src="../js/bootstrap.bundle.min.js"></script>
-
-  <script src="../js/sidebars.js"></script>
-
-  <script src="../js/myjs.js"></script>
 </body>
 
 </html>
