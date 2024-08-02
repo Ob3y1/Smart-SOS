@@ -20,24 +20,12 @@ const toggleSidebar1 = () => {
     else
    { localStorage.setItem("isSmall","no");
 }}
+
 function validate(event) {
     var password = document.getElementById('inputPassword4').value;
     var confirmPassword = document.getElementById('confirm').value;
 
     if (password === confirmPassword) {
-        return true;
-    } else {
-        alert('كلمة المرور غير متطابقة');
-        event.preventDefault(); // يمنع إرسال النموذج في حالة عدم تطابق كلمة المرور
-        return false;
-    }
-}
-function validateclick(event) {
-    var password = document.getElementById('inputPassword4').value;
-    var confirmPassword = document.getElementById('confirm').value;
-
-    if (password === confirmPassword) {
-        document.getElementById("myForm").submit();
         return true;
     } else {
         alert('كلمة المرور غير متطابقة');

@@ -376,16 +376,18 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Out</h1>
+                <div class="modal-header" >
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">تأكيد المغادرة</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                  Are you sure you want to sign out?
+                <div class="modal-body" dir="rtl">
+                    هل أنت متأكد من أنك تريد المغادرة؟
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-danger" id="sign-out-button">Sign Out</button>
+                    <form action="{{ route('logout') }}" method="get">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                  <button type="button" class="btn btn-danger" id="sign-out-button">مغادرة</button>
+                </form>
                 </div>
               </div>
             </div>

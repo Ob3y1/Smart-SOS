@@ -1,3 +1,4 @@
+
 if (localStorage.getItem("isSmall") === "yes") {
     sidebarId.classList.add("small-sidebar") ;
 } else {
@@ -20,6 +21,7 @@ const toggleSidebar1 = () => {
     else
    { localStorage.setItem("isSmall","no");
 }}
+
 function validate(event) {
     var password = document.getElementById('inputPassword4').value;
     var confirmPassword = document.getElementById('confirm').value;
@@ -37,7 +39,6 @@ function validateclick(event) {
     var confirmPassword = document.getElementById('confirm').value;
 
     if (password === confirmPassword) {
-        document.getElementById("myForm").submit();
         return true;
     } else {
         alert('كلمة المرور غير متطابقة');
@@ -49,16 +50,20 @@ function togglePasswordVisibility() {
     var passwordInput = document.getElementById("inputPassword4");
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 }
-document.getElementById('sign-out-button').addEventListener('click', function() {
-    // حذف البيانات من localStorage
-    localStorage.removeItem('users');
-    localStorage.removeItem('selectedValue'); 
+function togglePasswordVisibility1() {
+    var passwordInput = document.getElementById("confirm");
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+}
+// document.getElementById('sign-out-button').addEventListener('click', function() {
+//     // حذف البيانات من localStorage
+//     localStorage.removeItem('users');
+//     localStorage.removeItem('selectedValue'); 
 
-    // حذف البيانات من sessionStorage
-    sessionStorage.clear();
+//     // حذف البيانات من sessionStorage
+//     sessionStorage.clear();
 
-    // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
-    window.location.href = '/dashboard/login.html'; // افترض أن 'login.html' هو مسار صفحة تسجيل الدخول
-});
+//     // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
+//     window.location.href = 'login'; // افترض أن 'login.html' هو مسار صفحة تسجيل الدخول
+// });
 
 
