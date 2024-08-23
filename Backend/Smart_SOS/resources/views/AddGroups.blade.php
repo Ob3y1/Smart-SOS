@@ -214,56 +214,56 @@
     </svg>
 
     <main class="d-flex flex-nowrap">
-    <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
-        <div class="d-flex align-items-center mb-0 me-md-auto link-body-emphasis text-decoration-none">
-          <img src="../images/ALSHAMLOGO10-11-.png" class="doera" width="45px" onclick="toggleSidebar1()">
-          <span class="fs-4 sidebar-text ms-2">Smart SOS</span>
-        </div>
-        <button class="position-absolute myButton btn btn-sm " onclick="toggleSidebar()" style="right: 10px; top: 20px;">
-          <i class="bi bi-x menu "></i>
-        </button>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="{{route('homeadmin')}}" class="nav-link link-body-emphasis" aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#home" />
-              </svg>
-              <span class="sidebar-text">Home</span>
-            </a>
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{route('false')}}" class="nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#speedometer2" />
-              </svg>
-              <span class="sidebar-text"> False notifications</span>
-            </a>
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{ route('requests') }}" class="nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#table" />
-              </svg>
-              <span class="sidebar-text">Emergency Requests</span>
-            </a>
+      <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
+          <div class="d-flex align-items-center mb-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="../images/ALSHAMLOGO10-11-.png" class="doera" width="45px" onclick="toggleSidebar1()">
+            <span class="fs-4 sidebar-text ms-2">Smart SOS</span>
+          </div>
+          <button class="position-absolute myButton btn btn-sm " onclick="toggleSidebar()" style="right: 10px; top: 20px;">
+            <i class="bi bi-x menu "></i>
+          </button>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="{{route('homeadmin')}}" class="nav-link link-body-emphasis" aria-current="page">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#home" />
+                </svg>
+                <span class="sidebar-text">Home</span>
+              </a>
+            </li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{route('false')}}" class="nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#speedometer2" />
+                </svg>
+                <span class="sidebar-text"> False notifications</span>
+              </a>
+            </li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{ route('requests') }}" class="nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#table" />
+                </svg>
+                <span class="sidebar-text">Emergency Requests</span>
+              </a>
 
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{url('ShowGroups')}}" class="active nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#grid" />
-              </svg>
-              <span class="sidebar-text"> Groups</span>
-            </a>
-          </li>
-          
-          <hr style="margin: 5px 15px 5px 5px ; ">
-        </ul>
-        <hr>
+            </li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{url('ShowGroups')}}" class="active nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#grid" />
+                </svg>
+                <span class="sidebar-text"> Groups</span>
+              </a>
+            </li>
+            
+            <hr style="margin: 5px 15px 5px 5px ; ">
+          </ul>
+          <hr>
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -317,10 +317,9 @@
               <label for="inputState" class="form-label">العمل</label>
               <select id="inputState" class="form-select" required name="job" >
                 <option value="" selected disabled hidden>اختر...</option>
-                <option value="1">إسعاف</option>
-                <option value="2">إطفاء</option>
-                <option value="3">شرطة</option>
-                <option value="4">غوص</option>
+                @foreach($jobs as $job1)
+                  <option value="{{ $job1->id }}" {{ old('job') ==  $job1->id ? 'selected' : '' }}>{{  $job1->title }}</option>
+                @endforeach
               </select>
               <div class="invalid-feedback">
                   رجاءً اختر العمل المناسب  
@@ -354,31 +353,18 @@
             <label for="inputState1" class="form-label">المكان</label>
             <select id="inputState1" class="form-select" required name="site">
               <option value="" selected disabled hidden>اختر...</option>
-              <option value="المدينة القديمة">المدينة القديمة</option>
-              <option value="برزة">برزة</option>
-              <option value="دمر">دمر</option>
-              <option value="جوبر">جوبر</option>
-              <option value="قنوات">قنوات</option>
-              <option value="كفرسوسة">كفرسوسة</option>
-              <option value="مزة">مزة</option>
-              <option value="ميدان">ميدان</option>
-              <option value="مهاجرين">مهاجرين</option>
-              <option value="قابون">قابون</option>
-              <option value="قدم">قدم</option>
-              <option value="ركن الدين">ركن الدين</option>
-              <option value="صالحية">صالحية</option>
-              <option value="ساروجة">ساروجة</option>
-              <option value="شاغور">شاغور</option>
-              <option value="يرموك">يرموك</option>
+              @foreach($sites as $site1)
+                <option value="{{ $site1->id }}" {{ old('site') ==  $site1->id ? 'selected' : '' }}>{{  $site1->name }}</option>
+              @endforeach
             </select>
             <div class="invalid-feedback">
               رجاءً اختر المكان  
             </div>
           </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start  ">
-              <button type="submit" class="btn btn-primary  me-md-2" onclick="validateclick(event)" >Submit</button>
-              <button type="reset" class="btn btn-primary ">Reset</button>
-            </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start  ">
+            <button type="submit" class="btn btn-primary  me-md-2" onclick="validateclick(event)" >Submit</button>
+            <button type="reset" class="btn btn-primary ">Reset</button>
+          </div>
         </form>
       </section>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

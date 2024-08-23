@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmergencyRequestsTable extends Migration
+class CreateSitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateEmergencyRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emergency_requests', function (Blueprint $table) {
+        Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('name');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('details')->nullable();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -30,6 +29,6 @@ class CreateEmergencyRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emergency_requests');
+        Schema::dropIfExists('sites');
     }
 }

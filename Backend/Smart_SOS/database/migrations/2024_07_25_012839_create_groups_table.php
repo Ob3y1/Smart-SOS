@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->foreignId('job_id')->references('id')->on('jobs');
             $table->string('car_number')->unique();
-            $table->string('site');
+            $table->foreignId('site_id')->references('id')->on('sites');
             $table->boolean('group_status')->default(false);
             $table->string('password');
             $table->rememberToken();

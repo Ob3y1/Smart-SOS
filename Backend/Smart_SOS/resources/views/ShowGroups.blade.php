@@ -219,75 +219,75 @@
     </svg>
 
     <main class="d-flex flex-nowrap">
-    <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
-        <div class="d-flex align-items-center mb-0 me-md-auto link-body-emphasis text-decoration-none">
-          <img src="../images/ALSHAMLOGO10-11-.png" class="doera" width="45px" onclick="toggleSidebar1()">
-          <span class="fs-4 sidebar-text ms-2">Smart SOS</span>
-        </div>
-        <button class="position-absolute myButton btn btn-sm " onclick="toggleSidebar()" style="right: 10px; top: 20px;">
-          <i class="bi bi-x menu "></i>
-        </button>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="{{route('homeadmin')}}" class="nav-link link-body-emphasis" aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#home" />
-              </svg>
-              <span class="sidebar-text">Home</span>
-            </a>
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{route('false')}}" class="nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#speedometer2" />
-              </svg>
-              <span class="sidebar-text"> False notifications</span>
-            </a>
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{ route('requests') }}" class="nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#table" />
-              </svg>
-              <span class="sidebar-text">Emergency Requests</span>
-            </a>
-
-          </li>
-          <hr style="margin: 5px 15px 5px 5px ; ">
-          <li class="nav-item">
-            <a href="{{url('ShowGroups')}}" class="active nav-link link-body-emphasis">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#grid" />
-              </svg>
-              <span class="sidebar-text"> Groups</span>
-            </a>
-          </li>
-          
-          <hr style="margin: 5px 15px 5px 5px ; ">
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/ALSHAMLOGO8-4 (2).png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <span class="sidebar-text"> <strong>{{ Auth::user()->name }}
-          </strong></span>
-          </a>
-          <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
-            <li>
-              <hr class="dropdown-divider">
+      <div id="sidebarId" class="sidebar position-relative d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary ">
+          <div class="d-flex align-items-center mb-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="../images/ALSHAMLOGO10-11-.png" class="doera" width="45px" onclick="toggleSidebar1()">
+            <span class="fs-4 sidebar-text ms-2">Smart SOS</span>
+          </div>
+          <button class="position-absolute myButton btn btn-sm " onclick="toggleSidebar()" style="right: 10px; top: 20px;">
+            <i class="bi bi-x menu "></i>
+          </button>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="{{route('homeadmin')}}" class="nav-link link-body-emphasis" aria-current="page">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#home" />
+                </svg>
+                <span class="sidebar-text">Home</span>
+              </a>
             </li>
-            <li> <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Sign Out
-                        </button></li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{route('false')}}" class="nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#speedometer2" />
+                </svg>
+                <span class="sidebar-text"> False notifications</span>
+              </a>
+            </li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{ route('requests') }}" class="nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#table" />
+                </svg>
+                <span class="sidebar-text">Emergency Requests</span>
+              </a>
+
+            </li>
+            <hr style="margin: 5px 15px 5px 5px ; ">
+            <li class="nav-item">
+              <a href="{{url('ShowGroups')}}" class="active nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#grid" />
+                </svg>
+                <span class="sidebar-text"> Groups</span>
+              </a>
+            </li>
+            
+            <hr style="margin: 5px 15px 5px 5px ; ">
           </ul>
+          <hr>
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="../images/ALSHAMLOGO8-4 (2).png" alt="" width="32" height="32" class="rounded-circle me-2">
+              <span class="sidebar-text"> <strong>{{ Auth::user()->name }}
+            </strong></span>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li> <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Sign Out
+                          </button></li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="b-example-divider b-example-vr"></div>
+        <div class="b-example-divider b-example-vr"></div>
 
 
       <section class=" w-100 overflow-y-auto overflow-x-hidden" data-bs-smooth-scroll="true">
@@ -305,7 +305,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-5">
           
           <div class='col info'>
-            <a href="{{ url('ShowGroups1', ['job' => 2]) }}">
+            <a href="{{ url('ShowGroups1', ['job' => 1]) }}">
               <img src='../images/pexels-pixabay-71272.jpg' >
               <div class='caption card-body '>
                 <h4 style='color: white;  margin-top:130px; font-size: 25px;' class="card-title">إطفاء</h4>
@@ -313,7 +313,7 @@
             </a>
           </div>
           <div class='col info '>
-            <a href='ShowGroups1/3'>
+            <a href="{{ url('ShowGroups1', ['job' => 2]) }}">
               <img src='../images/pexels-cottonbro-10476391.jpg'>
               <div class='caption'>
                 <h4 style='color: white;  margin-top:130px; font-size: 25px;'>شرطة</h4>
@@ -321,7 +321,7 @@
             </a>
           </div>
           <div class='col info '>
-            <a href='ShowGroups1/4' style="display: block;">
+            <a href="{{ url('ShowGroups1', ['job' => 3]) }}">
               <img src='../images/pexels-7inchs-8059797.jpg' >
               <div class='caption'>
                 <h4 style='color: white;  margin-top:130px; font-size: 25px;'>غوص</h4>
@@ -329,7 +329,7 @@
             </a>
           </div>
           <div class='col info '>
-            <a href='ShowGroups1/1'>
+            <a href="{{ url('ShowGroups1', ['job' => 4]) }}">
               <img src='../images/pexels-imdennyz-5969995.jpg'>
               <div class='caption'>
                 <h4 style='color: white;  margin-top:130px; font-size: 25px;'> إسعاف</h4>

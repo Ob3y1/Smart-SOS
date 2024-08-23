@@ -18,7 +18,7 @@ class Group extends Authenticatable
     protected $fillable =[
         'job_id',
         'car_number',
-        'site',
+        'site_id',
         'group_status',
         'password',
         'created_at',
@@ -30,6 +30,10 @@ class Group extends Authenticatable
      public function Job()
      {
          return $this->belongsTo(Job::class,'job_id');
+     }
+     public function Site()
+     {
+         return $this->belongsTo(Site::class,'site_id');
      }
      protected $hidden = [
         'password',

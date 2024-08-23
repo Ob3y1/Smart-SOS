@@ -14,7 +14,7 @@ class AddColumnRole extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('role')->default(0);
+            $table->tinyInteger('role')->nullable();
         });
     }
 
