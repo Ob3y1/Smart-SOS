@@ -311,13 +311,9 @@
                     </tr>
                     <tr>
                       <th >المنطقة</th>
-                      <td id="city">{{$group->site}}</td>
+                      <td id="city">{{$group->Site->name}}</td>
                     </tr>
                   
-                    <tr>
-                      <th scope="row">كلمة السر</th>
-                      <td id="pas">{{$group->password}}</td>
-                    </tr>
                       <th scope="row">انشأت بتاريخ</th>
                       <td id="created">{{$group->created_at}}</td>
                     </tr>

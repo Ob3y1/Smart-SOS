@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Job;
+use App\Models\Site;
+
 use Auth;
 use Hash;
 use Session;
@@ -31,7 +33,9 @@ class AdminController extends Controller
     } 
     public function AddGroups()
     {
-        return view('AddGroups');
+        $jobs = Job::all();
+        $sites = Site::all();
+        return view('AddGroups', compact('sites','jobs'));
     }
 
     public function store(Request $request)
@@ -50,33 +54,34 @@ class AdminController extends Controller
         $group = new Group ;
         $group->job_id = $request->input('job');
         $group->car_number = $request->input('car_num');
-        $group->site = $request->input('site');
-        $group->password = $request->input('password');
+        $group->site_id = $request->input('site');
+        $group->password = Hash::make($request->input('password'));
         $group->save();
         return redirect('ShowGroups');
-        }
+    }
     public function index()
     {
         return view('ShowGroups');
     }
     public function index1($job)
     { 
+        $sites = Site::all();
         $groups = Group::where('job_id',$job)->paginate(10);
-        return view('ShowGroups1', compact('groups','job'));
+        return view('ShowGroups1', compact('groups','job','sites'));
     }  
     public function simple(Request $request)
     {
         $job = $request->job;
-       
+        $sites = Site::all();
         if ($request->input('searchselect')) {   
             $groups = Group::where('job_id', $job)
-                           ->where('site', 'LIKE', "%" . $request->searchselect . "%")
+                           ->where('site_id', 'LIKE', "%" . $request->searchselect . "%")
                            ->paginate(100);
         } else {
             $groups = Group::where('job_id', $job)
                            ->paginate(10);
         }
-        return view('ShowGroups1', compact('groups', 'job'));
+        return view('ShowGroups1', compact('groups','job','sites'));
     }
     
     public function details1($id)
@@ -86,8 +91,10 @@ class AdminController extends Controller
     } 
     public function updateGroup1($id)
     {
+        $jobs = Job::all();
+        $sites = Site::all();
         $group = Group::findOrFail($id);
-        return view('edit', compact('group'));
+        return view('edit', compact('group','jobs','sites'));
     }
     public function updateGroup2(Request $request, $id)
     { 
@@ -107,9 +114,11 @@ class AdminController extends Controller
         if ($group) {
         $group->job_id = $request->input('job');
         $group->car_number = $request->input('car_num');
-        $group->site = $request->input('site');
-        $group->password = $request->input('password');
-        $group->update();
+        $group->site_id = $request->input('site');
+        if ($request->filled('password')) {
+            $group->password = Hash::make($request->password);
+        }       
+         $group->update();
            return redirect('ShowGroups1/'.$job)->with('success', 'تم التعديل بنجاح');
         } else { 
             return redirect('ShowGroups1/'.$job)->with('error', 'الزمرة  التي تحاول تعديلها غير موجودة');
@@ -150,18 +159,26 @@ class AdminController extends Controller
     {
         $id=Auth::user()->id;
         $user = User::findOrFail($id);
+        $phoneNumber=$user->Otp->identifier;
         $fullName=$user->name;
         $splitName = explode(' ', $fullName, 2);
         $firstName = $splitName[0];
         $lastName = isset($splitName[1]) ? $splitName[1] : '';
-
-        return view('profile', compact('user' , 'firstName', 'lastName'));
+        $localNumber = '0' . substr($phoneNumber, 4);
+        return view('profile', compact('user' , 'firstName', 'lastName','localNumber'));
     }
     public function profile1(Request $request)
     {     
         $id=Auth::user()->id;
+        $phoneNumber = $request->input('phone_number');
+        if (substr($phoneNumber, 0, 1) === '0') {
+            $formattedNumber = '+963' . substr($phoneNumber, 1);
+        } else {
+            $formattedNumber = $phoneNumber;
+        }
+        $request->merge(['phone_number' => $formattedNumber]);
         $rules = [
-            'phone_number' => 'unique:users,phone_number,' . $id,
+            'phone_number' => 'unique:otps,identifier,' . $id,
         ];
         // تنفيذ التحقق
         $validator = Validator::make($request->all(), $rules);
@@ -169,11 +186,14 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        
         $id=Auth::user()->id;
         $user = User::find($id);
         $fullName = $request->fname . ' ' . $request->lname;
         $user->name =$fullName;
-        $user->phone_number = $request->phone_number;
+        $otp = $user->Otp;
+        $otp->identifier = $request->input('phone_number');
+        $otp->save(); 
         $user->date_of_birth = $request->date_of_birth;
         $user->gender = $request->gender;
     

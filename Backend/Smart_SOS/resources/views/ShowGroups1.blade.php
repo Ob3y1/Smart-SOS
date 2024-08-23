@@ -285,7 +285,7 @@
                     </ul>
                   </div>
               </div> 
-                <div class="b-example-divider b-example-vr"></div>
+              <div class="b-example-divider b-example-vr"></div>
                 <section class=" w-100 overflow-y-auto overflow-x-hidden" data-bs-smooth-scroll="true">
                   <nav class="navbar bg-body-tertiary">
                     <div class="container-fluid  justify-content-md-between">
@@ -295,22 +295,9 @@
                         <select class=" my-2 form-control" id="selectOption" style="width: 60%;" aria-label="Default select example"
                           aria-hidden="false" name="searchselect">
                           <option></option>
-                          <option value="المدينة القديمة">المدينة القديمة</option>
-                          <option value="برزة">برزة</option>
-                          <option value="دمر">دمر</option>
-                          <option value="جوبر">جوبر</option>
-                          <option value="قنوات">قنوات</option>
-                          <option value="كفرسوسة">كفرسوسة</option>
-                          <option value="مزة">مزة</option>
-                          <option value="ميدان">ميدان</option>
-                          <option value="مهاجرين">مهاجرين</option>
-                          <option value="قابون">قابون</option>
-                          <option value="قدم">قدم</option>
-                          <option value="ركن الدين">ركن الدين</option>
-                          <option value="صالحية">صالحية</option>
-                          <option value="ساروجة">ساروجة</option>
-                          <option value="شاغور">شاغور</option>
-                          <option value="يرموك">يرموك</option>
+                          @foreach($sites as $site1)
+                          <option value="{{ $site1->id }}">{{  $site1->name }}</option>
+                          @endforeach
                         </select>
                         <input type="text"  hidden value="{{ $job }}" name="job" >
                         <button class="btn btn-outline-success mx-2" type="submit">Search</button>
@@ -343,7 +330,7 @@
                             <th scope="row">{{$group->id}}</th>
                             <td>{{$group->car_number}}</td>
                             <td>{{$group->Job->title}}</td>
-                            <td>{{$group->site}}</td>
+                            <td>{{$group->Site->name}}</td>
                         <td>
                           <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="View details" href="{{ url('showdetails/' . $group->id) }}"><i class="bi bi-eye"></i></a>
@@ -356,49 +343,49 @@
                     @endforeach
                     </tbody>
                   </table>
-                <div class="mx-3"> {{ $groups->links() }}</div>
+                 <div class="mx-3"> {{ $groups->links() }}</div>
               
-                            <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">تأكيد الحذف</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" dir="rtl">
-                            هل أنت متأكد من أنك تريد حذف هذا العنصر؟
-                            <form id="deleteForm" method="POST" action="{{route('delete.group1')}}">
-                                @csrf
-                                <input type="hidden" id="hiddenGroupId" name="group_id" value="">
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                            <button type="submit" form="deleteForm" class="btn btn-danger">حذف</button>
-                        </div>
-                    </div>
+                <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel">تأكيد الحذف</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body" dir="rtl">
+                              هل أنت متأكد من أنك تريد حذف هذا العنصر؟
+                              <form id="deleteForm" method="POST" action="{{route('delete.group1')}}">
+                                  @csrf
+                                  <input type="hidden" id="hiddenGroupId" name="group_id" value="">
+                              </form>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                              <button type="submit" form="deleteForm" class="btn btn-danger">حذف</button>
+                          </div>
+                      </div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header" >
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">تأكيد المغادرة</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" dir="rtl">
-                        هل أنت متأكد من أنك تريد المغادرة؟
-                    </div>
-                    <div class="modal-footer">
-                      <form action="{{ route('logout') }}" method="get">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
-                        <button type="submit" class="btn btn-danger" id="sign-out-button">مغادرة</button>
-                      </form>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" >
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">تأكيد المغادرة</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body" dir="rtl">
+                          هل أنت متأكد من أنك تريد المغادرة؟
+                      </div>
+                      <div class="modal-footer">
+                        <form action="{{ route('logout') }}" method="get">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                          <button type="submit" class="btn btn-danger" id="sign-out-button">مغادرة</button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </main>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>

@@ -327,11 +327,10 @@
                     <div class="col-md-6">
                     <label for="inputjob" class="form-label">العمل</label>
                     <select id="inputjob" class="form-select" required name="job" >
-                    <option value="" selected disabled hidden>اختر...</option>
-                        <option value="1">إسعاف</option>
-                        <option value="2">إطفاء</option>
-                        <option value="3">شرطة</option>
-                        <option value="4">غوص</option>
+                        <option value="" selected disabled hidden>اختر...</option>
+                        @foreach($jobs as $job1)
+                             <option value="{{ $job1->id }}" {{ old('job') ==  $job1->id ? 'selected' : '' }}>{{  $job1->title }}</option>
+                         @endforeach
                     </select>
                     <div class="invalid-feedback">
                         رجاءً اختر العمل المناسب 
@@ -339,8 +338,8 @@
                     </div>
                     <div class="col-md-6 ">
                         <label for="inputPassword4" class="form-label">كلمة السر</label>
-                        <input type="password" required class="form-control" id="inputPassword4"  maxlength="8" pattern="(?=.*\d)(?=.*[a-z]).{4,8}"
-                        title="Must contain at least one  number and lowercase letter, and between 4 - 8 characters" name="password" value="{{$group->password}}">
+                        <input type="password" class="form-control" id="inputPassword4"  maxlength="8" pattern="(?=.*\d)(?=.*[a-z]).{4,8}"
+                        title="Must contain at least one  number and lowercase letter, and between 4 - 8 characters" name="password" value="">
                         <input type="checkbox" class="form-check-input" onclick="togglePasswordVisibility()" /> إظهار كلمة
                                 المرور
                             </div>
@@ -351,7 +350,7 @@
                     </div>
                     <div class="col-md-6 ">
                         <label for="confirm" class="form-label">اعد كتابة كلمة السر</label>
-                        <input type="password" required  class="form-control" id="confirm" onblur="validate(event)" maxlength="8" pattern="(?=.*\d)(?=.*[a-z]).{4,8}">
+                        <input type="password" class="form-control" id="confirm" onblur="validate(event)" maxlength="8" pattern="(?=.*\d)(?=.*[a-z]).{4,8}">
                         <input type="checkbox" class="form-check-input" onclick="togglePasswordVisibility1()" /> إظهار كلمة
                                 المرور
                             </div>
@@ -360,22 +359,9 @@
                         <label for="inputsite" class="form-label">المكان</label>
                         <select id="inputsite" class="form-select" required name="site">
                         <option value="" selected disabled hidden>اختر...</option>
-                        <option value="المدينة القديمة">المدينة القديمة</option>
-                        <option value="برزة">برزة</option>
-                        <option value="دمر">دمر</option>
-                        <option value="جوبر">جوبر</option>
-                        <option value="قنوات">قنوات</option>
-                        <option value="كفرسوسة">كفرسوسة</option>
-                        <option value="مزة">مزة</option>
-                        <option value="ميدان">ميدان</option>
-                        <option value="مهاجرين">مهاجرين</option>
-                        <option value="قابون">قابون</option>
-                        <option value="قدم">قدم</option>
-                        <option value="ركن الدين">ركن الدين</option>
-                        <option value="صالحية">صالحية</option>
-                        <option value="ساروجة">ساروجة</option>
-                        <option value="شاغور">شاغور</option>
-                        <option value="يرموك">يرموك</option>
+                        @foreach($sites as $site1)
+                            <option value="{{ $site1->id }}" {{ old('site') ==  $site1->id ? 'selected' : '' }}>{{  $site1->name }}</option>
+                        @endforeach
                         </select>
                         <div class="invalid-feedback">
                             رجاءً اختر المكان  
@@ -439,7 +425,7 @@
             let ci = document.getElementById('inputsite');
             let j = document.getElementById('inputjob');
             var group = @json($group);
-            ci.value = group.site;
+            ci.value = group.site_id;
             j.value = group.job_id;
         </script>
         <script src="../js/sidebars.js"></script>

@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class GroupRequest extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable = [
+        'group_id',
+        'request_id',
+        'request_status',
+        'false_notification	',
+        'user_note',
+
+    ];    
     public function EmergencyRequest()
     {
         return $this->belongsTo(EmergencyRequest::class,'request_id');

@@ -20,12 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'phone_number',
-        'mobile_verified_at',
-        'mobile_verify_code',
-        'mobile_attempts_left',
-        'mobile_last_attempt_date',
-        'mobile_verify_code_sent_at',
+        'otp_id',
         'date_of_birth',
         'gender',
         'password',
@@ -36,7 +31,10 @@ class User extends Authenticatable
         return $this->hasMany(EmergencyRequest::class);
      }
 
-
+     public function Otp()
+     {
+         return $this->belongsTo(Otp::class);
+     }
     /**
      * The attributes that should be hidden for serialization.
      *

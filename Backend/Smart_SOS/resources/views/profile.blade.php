@@ -298,7 +298,7 @@
                         <span class="input-group-text">الاسم الأول والكنية</span>
                         <input type="text" aria-label="First name" pattern="[أ-ي]{3,15}" class="form-control " required
                             id="Fname" name="fname" value="{{$firstName}}">
-                        <input type="text" aria-label="Last name" pattern="[أ-ي]{3,15}" class="form-control rounded-end-2"
+                        <input type="text" aria-label="Last name"  class="form-control rounded-end-2"
                             required id="Lname" name="lname" value="{{$lastName}}">
                         <div class="invalid-feedback">
                             رجاءً ادخل الاسم الكامل
@@ -309,7 +309,7 @@
                         <div class="input-group" dir="ltr">
                             <span class="input-group-text">+963</span>
                             <input type="tel" placeholder="0987654321" maxlength="10" pattern="09+[0-9]{8}"
-                                class="form-control rounded-end-2" required id="inputnum" name="phone_number" value="{{$user->phone_number}}">
+                                class="form-control rounded-end-2" required id="inputnum" name="phone_number" value="{{$localNumber}}">
                             <div class="invalid-feedback" dir="rtl">
                                 رجاء ادخل رقم صحيح
                             </div>

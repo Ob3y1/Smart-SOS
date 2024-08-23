@@ -16,12 +16,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone_number')->unique();
-            $table->timestamp('mobile_verified_at')->nullable();
-            $table->string('mobile_verify_code')->nullable();
-            $table->tinyInteger('mobile_attempts_left')->default(0);
-            $table->timestamp('mobile_last_attempt_date')->nullable();
-            $table->timestamp('mobile_verify_code_sent_at')->nullable();
+            $table->unsignedInteger('otp_id');
+            $table->foreign('otp_id')->references('id')->on('otps')->onDelete('cascade');
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
             $table->string('password');

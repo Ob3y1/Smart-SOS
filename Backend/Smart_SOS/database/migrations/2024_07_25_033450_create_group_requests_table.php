@@ -16,7 +16,7 @@ class CreateGroupRequestsTable extends Migration
         Schema::create('group_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id')->references('id')->on('groups');
-            $table->foreignId('request_id')->references('id')->on('emergency_requests');
+            $table->foreignId('emergency_request_id')->references('id')->on('emergency_requests');
             $table->foreignId('request_status')->references('id')->on('r_statuses');
             $table->boolean('false_notification')->nullable()->default(0);
             $table->string('user_note')->nullable();
