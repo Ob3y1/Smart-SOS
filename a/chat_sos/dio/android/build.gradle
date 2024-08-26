@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        google()  // تأكد من وجود هذا المستودع
+        mavenCentral()  // تأكد من وجود هذا المستودع
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2'  // الإصدار يعتمد على مشروعك
+        classpath 'com.google.gms:google-services:4.4.2'  // هذا هو الاعتماد المطلوب
+    }
+}
+
+allprojects {
+    repositories {
+        google()  // تأكد من وجود هذا المستودع
+        mavenCentral()  // تأكد من وجود هذا المستودع
+    }
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
