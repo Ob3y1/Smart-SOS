@@ -1,0 +1,47 @@
+name: flutter_application_1
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  baseflow_plugin_template: ^2.2.0
+  country_picker: ^2.0.19
+  cupertino_icons: ^1.0.6
+  dio: ^5.5.0+1
+  equatable: ^2.0.5
+  firebase_core: ^2.24.2
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_form_builder: ^9.3.0
+  flutter_map: ^6.1.00
+  flutter_tts: ^4.0.0
+  flutter_typeahead: ^5.2.0
+  geocoding: ^3.0.0
+  geolocator: ^12.0.0
+  google_sign_in: ^6.1.5
+  google_speech: ^2.0.1
+  highlight_text: ^1.8.0
+  http: ^1.2.2
+  image_picker: ^1.1.2
+  intl_phone_field: ^3.1.0
+  jwt_decoder: ^2.0.1
+  latlong2: ^0.9.1
+  otp_text_field: ^1.1.0+2
+  permission_handler: ^11.3.1
+  shared_preferences: ^2.2.3
+  speech_to_text: ^6.1.1
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/
