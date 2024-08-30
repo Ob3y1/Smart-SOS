@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "774237f6-0deb-42db-a637-4ecb9d6bb7c0",
+		"name": "Smart_SOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36595562"
+	},
+	"item": [
+		{
+			"name": "User Send Otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone_number\": \"0964925100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/SendOtp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"SendOtp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Verify OTP and SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"عبدالله\",\r\n    \"phone_number\": \"0964925100\",\r\n    \"date_of_birth\": \"1990-01-01\",\r\n    \"gender\": \"male\",\r\n    \"password\": \"111q\",\r\n    \"otp\":\"4618\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/verifyOtpSignUp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"verifyOtpSignUp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone_number\": \"0964925100\",\r\n    \"password\": \"111q\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/loginusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"loginusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"الو مرحبا \",\r\n  \"password\": \"111q\",\r\n  \"date_of_birth\": \"1990-01-01\",\r\n  \"gender\": \"male\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User home",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"latitude\": \"33.538091835761946\",\r\n  \"longitude\": \"36.200321965966545\",\r\n  \"type\":\"1.1\",\r\n  \"details\":\"hello hi \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/homeuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"homeuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User requests",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/getrequest/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getrequest",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User sendco",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"message\": \"ان شاء  الله مشروع 100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/complaints",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"complaints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User get_co",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|57xGm5HY3uVmbUiIZP5WDUIxYWFUNPotKeUyFQw2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/complaints",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"complaints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 11|mtRmCi9ExKqnz7x3k3xPXzPZJ5UdcN6Uk2l5nFHj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/logoutusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logoutusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"car_number\": \"111111\",\r\n    \"password\": \"111q\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/logingroups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logingroups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group get_request_notification",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|xawmwm4rjzygNML3Hrnlq0u9gCUiyakOrnkSJEox",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/get_request_notification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get_request_notification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group Agree",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|xawmwm4rjzygNML3Hrnlq0u9gCUiyakOrnkSJEox",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/agree/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"agree",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group Refuse",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|LdoWuYDQKrGIk5PgqLSGgzlblZ6h1r0O71jE7vtS",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/refuse/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"refuse",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group change status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|xawmwm4rjzygNML3Hrnlq0u9gCUiyakOrnkSJEox",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/change_status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"change_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group show_info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|LdoWuYDQKrGIk5PgqLSGgzlblZ6h1r0O71jE7vtS",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/show_info/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"show_info",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group Finish",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|LdoWuYDQKrGIk5PgqLSGgzlblZ6h1r0O71jE7vtS",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"false\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/finish",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"finish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group support",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 3|xawmwm4rjzygNML3Hrnlq0u9gCUiyakOrnkSJEox",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/support/30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"support",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Group Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 10|Kplx0uJvOzSBEEPW7tDmIxIv7NMJQUaemOQGqKDM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/logoutgroups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logoutgroups"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
