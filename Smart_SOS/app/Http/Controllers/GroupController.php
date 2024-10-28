@@ -240,6 +240,10 @@ class groupController extends Controller
     // } 
     public function logout(Request $request)
      {
+        $user = Auth::user();
+        $user->group_status = 0;
+        $user->save();
+
         $request->user()->currentAccessToken()->delete();
          return response()->json([
              'message' => 'Logged out successfully'

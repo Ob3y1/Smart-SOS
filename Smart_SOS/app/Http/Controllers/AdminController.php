@@ -78,6 +78,11 @@ class AdminController extends Controller
         $groups = Group::where('site_id', $id)->get();
         return view('showsitegroup', compact('groups'));
     } 
+    public function grouprequest($id)
+    {
+        $user = User::find($id);
+        return view('Couser', compact('user'));
+    } 
     public function ShowCo()
     {
         $complaints = Complaint::where('c_status_id',1)->get();      
@@ -105,10 +110,8 @@ class AdminController extends Controller
             'car_num' => 'unique:groups,car_number',
         ];
 
-        // تنفيذ التحقق
         $validator = Validator::make($request->all(), $rules);
 
-        // التحقق من وجود أخطاء
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -187,28 +190,7 @@ class AdminController extends Controller
          }
     }
 
-    public function deleteGroup1(Request $request)
-    {
-        $groupId = $request->input('group_id');
-        $group = Group::find($groupId);
-        if ($group) {
-            $group->delete();
-            return redirect()->back()->with('success', 'تم الحذف بنجاح');
-        } else {
-            return redirect()->back()->with('error', 'الزمرة  التي تحاول حذفها غير موجودة');
-        }
-    }
-    public function deleteGroup2(Request $request)
-    {  $job = $request->input('job_id');
-        $groupId = $request->input('group_id');
-        $group = Group::find($groupId);
-        if ($group) {
-            $group->delete();
-            return redirect('ShowGroups1/'.$job)->with('success', 'تم الحذف بنجاح');
-        } else {
-            return redirect('ShowGroups1/'.$job)->with('error', 'الزمرة  التي تحاول حذفها غير موجودة');
-        }
-    }
+   
     public function logout() {
         Session::flush();
         Auth::logout();

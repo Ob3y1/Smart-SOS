@@ -128,7 +128,7 @@ class UserController extends Controller
     {
        
         $client = new Client();
-        $apiKey = 'AIzaSyC_HolYyiSvWA68S4Vs7h2MMZa2Yspb-WU';
+        $apiKey = env('GOOGLE_MAPS_API_KEY');
         $sites = Site::all();
         $distances = [];
     

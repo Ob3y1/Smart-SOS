@@ -236,7 +236,6 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                       
-                      <hr style="margin: 5px 15px 5px 5px ; ">
                       <li class="nav-item">
                         <a href="{{route('false')}}" class="  nav-link link-body-emphasis">
                           <svg class="bi pe-none me-2" width="16" height="16">
@@ -356,36 +355,12 @@
                           <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Edit User" href="{{ url('updategroup1/' . $group->id) }}"><i class="bi bi-pencil"></i></a>
                           
-                            <button type="button" class="btn btn-danger btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-group-id="{{ $group->id }}"><i class="bi bi-trash"></i></button>
-
                         </td></tr>
                     @endforeach
                     </tbody>
                   </table>
                  <div class="mx-3"> {{ $groups->links() }}</div>
               
-                <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="staticBackdropLabel">تأكيد الحذف</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" dir="rtl">
-                              هل أنت متأكد من أنك تريد حذف هذا العنصر؟
-                              <form id="deleteForm" method="POST" action="{{route('delete.group1')}}">
-                                  @csrf
-                                  <input type="hidden" id="hiddenGroupId" name="group_id" value="">
-                              </form>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                              <button type="submit" form="deleteForm" class="btn btn-danger">حذف</button>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">

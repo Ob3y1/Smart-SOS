@@ -388,31 +388,9 @@
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start  ">
                         <button type="submit" class="btn btn-primary  me-md-2" onclick="validateclick(event)" >Submit</button>
                         <button type="reset" class="btn btn-primary " id="reset">Reset</button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ><i class="bi bi-trash"></i></button>
                     </div>
                 </form>
-                <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">تأكيد الحذف</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body" dir="rtl">
-                                هل أنت متأكد من أنك تريد حذف هذا العنصر؟
-                                <form id="deleteForm" method="POST" action="{{route('delete.group2')}}">
-                                    @csrf
-                                    <input type="hidden" id="hiddenGroupId" name="group_id" value="{{ $group->id}}">
-                                    <input type="hidden" id="hiddenGroupId" name="job_id" value="{{ $group->job_id}}">
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                                <button type="submit" form="deleteForm" class="btn btn-danger">حذف</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 @if (session('error'))
                     <div class="alert alert-danger" dir="rtl">
                         {{ session('error') }}

@@ -32,7 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('getrequest/{id}', [UserController::class, 'getrequests']);
     Route::get('/complaints', [ComplaintController::class, 'index']);
     Route::post('/complaints', [ComplaintController::class, 'store']);
-
 //end users
 // groups
     Route::get('get_request_notification', [GroupController::class, 'get_request_notification']);

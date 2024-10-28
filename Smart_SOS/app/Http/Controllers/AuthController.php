@@ -128,7 +128,7 @@ class AuthController extends Controller
             if (Auth::attempt($credentials)) {
                 // تحقق من دور المستخدم
                 if (Auth::user()->role == 1) {
-                    return redirect()->intended('ShowSites')
+                    return redirect()->intended('requests')
                                 ->withSuccess('You have Successfully loggedin');
                 } else {        
                     Auth::logout();

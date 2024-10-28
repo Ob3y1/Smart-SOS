@@ -314,44 +314,60 @@
             <a class="navbar-brand fw-normal fs-4 mb-1 mb-md-0">Complaint</a>
           </div>
         </nav>
-        <style>
-            #inlineFormInputGroupUsername {
-                width: 70%; /* تعيين العرض إلى 80% من الحاوية الأب */
-            }
-        </style>
-<div style="width: 95%; margin: auto;">
-    <div class="accordion my-2" id="accordionExample">
-        @foreach ($complaints as $complaint)
-        <!-- استخدام loop index للحصول على معرف فريد لكل عنصر Accordion -->
-        @php
-            $collapseId = 'collapse' . $loop->index; // إنشاء معرف فريد بناءً على الفهرس
-        @endphp
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#{{ $collapseId }}" aria-expanded="false" aria-controls="{{ $collapseId }}">
-                    {{$complaint->User->name}}
-                </button>
-            </h2>
-            <div id="{{ $collapseId }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body g-3" dir="rtl">
-                    <strong>انا المواطن </strong><a href="grouprequest/{{$complaint->User->id}}"><strong>{{$complaint->User->name}}</strong></a> و لدي الشكوى التالية 
-                    <br> {{$complaint->message}}<br>
-                    <code>رقم هاتفي {{$complaint->User->Otp->identifier}}</code>
-                    <form class="d-flex align-items-center mt-2" dir="ltr" action="ShowCo" method="POST">
-                        @csrf
-                        <div class="input-group me-2" style="flex-grow: 1;">
-                            <div class="input-group-text">رد المسؤول</div>
-                            <textarea class="form-control" id="inlineFormInputGroupUsername" name="response" rows="2" style="resize: none;"></textarea>
-                        </div>
-                        <input type="text" hidden value="{{$complaint->id}}" name="id">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+        
+     
+       
+    <div style="width: 95%; margin: auto;">
+        <div class="accordion my-2" id="accordionExample">
+        @foreach($user->EmergencyRequest as $emergencyRequest)
+            <!-- استخدام loop index للحصول على معرف فريد لكل عنصر Accordion -->
+            @php
+                $collapseId = 'collapse' . $loop->index; // إنشاء معرف فريد بناءً على الفهرس
+            @endphp
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#{{ $collapseId }}" aria-expanded="false" aria-controls="{{ $collapseId }}"  id="location-{{$emergencyRequest->id}}">
+                        جاري التحميل...
+                    </button>
+                </h2>
+                <div id="{{ $collapseId }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body g-3" dir="rtl">
+                        <table style="width: 95%;" class="text-center table table-striped table-bordered mx-auto  my-4 w-md-90">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">اسم الشخص</th>
+                                    <th scope="col">رقم الهاتف</th>
+                                    <th scope="col">نوع الطلب</th>
+                                    <th scope="col">رقم السيارة التي خدمته</th>
+                                    <th scope="col">المركز الذي يخدم</th>
+                                    <th scope="col"> حالة الطلب </th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTable">
+                            @foreach($emergencyRequest->GroupRequest as $groupRequest)
+                                    <tr>
+                                        <th scope="row">{{$groupRequest->id}}</th>
+                                        <td>{{ $groupRequest->EmergencyRequest->User->name ?? 'N/A' }}</td>
+                                        <td>{{ $groupRequest->EmergencyRequest->User->Otp->identifier ?? 'N/A' }}</td>
+                                        <td>{{ $groupRequest->Group->Job->title ?? 'N/A' }}</td>
+                                        <td>{{ $groupRequest->Group->car_number ?? 'N/A' }}</td>
+                                        <td>{{ $groupRequest->Group->Site->name ?? 'N/A' }}</td>
+                                        <td>{{ $groupRequest->R_status->title ?? 'N/A' }}</td>
+                                    </tr>
+                                @endforeach 
+                            </tbody>
+                        </table>
+
+                        
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
+    
 </div>
 
 
@@ -381,5 +397,36 @@
     <script src="../js/sidebars.js"></script>
 
     <script src="../js/myjs.js"></script>
+    <script>
+    // الدالة لتحويل الإحداثيات إلى عنوان
+    function convertToAddress(lat, lng, elementId) {
+        if (!lat || !lng) {
+            document.getElementById(elementId).innerText = 'الإحداثيات غير متاحة';
+            return;
+        }
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.display_name) {
+                    const address = data.display_name;
+                    document.getElementById(elementId).innerText = address;
+                } else {
+                    document.getElementById(elementId).innerText = 'غير قادر على الحصول على العنوان';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById(elementId).innerText = 'خطأ في الحصول على العنوان';
+            });
+    }
+
+    // استدعاء الدالة لكل مجموعة
+    document.addEventListener('DOMContentLoaded', function () {
+        @foreach($user->EmergencyRequest as $emergencyRequest)
+            convertToAddress({{ $emergencyRequest->latitude }}, {{ $emergencyRequest->longitude }}, 'location-{{$emergencyRequest->id}}');
+        @endforeach
+    });
+    </script>
   </body>
 </html>

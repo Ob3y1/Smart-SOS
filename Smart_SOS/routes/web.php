@@ -27,6 +27,7 @@ Route::post('AddSites', [AdminController::class, 'AddSites1'])->name('AddSites')
 Route::get('showsitegroup/{id}', [AdminController::class, 'showsitegroup'])->name('showsitegroup');
 Route::get('ShowCo', [AdminController::class, 'ShowCo'])->name('ShowCo');
 Route::post('ShowCo', [AdminController::class, 'ShowCo1'])->name('ShowCo');
+Route::get('grouprequest/{id}', [AdminController::class, 'grouprequest'])->name('grouprequest');
 Route::get('profile', [AdminController::class, 'profile'])->name('profile');
 Route::put('profile', [AdminController::class, 'profile1'])->name('postprofile');
 Route::get('AddGroups', [AdminController::class, 'AddGroups']);
@@ -37,7 +38,6 @@ Route::get('simple', [AdminController::class,'simple'])->name('simple_search');
 Route::get('showdetails/{id}', [AdminController::class, 'details1']);
 Route::get('updategroup1/{id}', [AdminController::class, 'updateGroup1']);
 Route::put('updategroup2/{id}', [AdminController::class, 'updateGroup2']);
-Route::post('/delete1', [AdminController::class, 'deleteGroup1'])->name('delete.group1');
-Route::post('/delete2', [AdminController::class, 'deleteGroup2'])->name('delete.group2');
+
 
 
