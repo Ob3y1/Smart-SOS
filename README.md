@@ -65,7 +65,7 @@ A comprehensive emergency management solution that:
 ### Backend Setup  
 ```bash
 # Clone & Configure
-git clone https://github.com/gov-emergency/response-system.git
+git clone https://github.com/Ob3y1/Smart-SOS.git
 cd response-system/backend
 cp .env.example .env 
 
